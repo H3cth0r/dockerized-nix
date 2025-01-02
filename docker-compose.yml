@@ -1,0 +1,36 @@
+version: '3.8'
+ 
+services:
+  ubuntu:
+    image: ubuntu:latest
+    container_name: my-ubuntu
+    environment:
+      - USER=root
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./shared:/shared
+      - ./data:/data
+      - ./config:/etc/myapp
+    working_dir: /shared
+    command: >
+      bash -c '
+        # Update and install required packages
+        apt update &&
+        apt install -y curl xz-utils nano &&
+        
+        # Install Nix
+        curl -L https://nixos.org/nix/install | sh -s -- --daemon --yes &&
+        
+        # Source nix
+        . /root/.nix-profile/etc/profile.d/nix.sh &&
+        
+        # Install home manager
+        nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager &&
+        nix-channel --update &&
+        nix-shell "<home-manager>" -A install &&
+        
+        # Keep container running
+        tail -f /dev/null
+      '
+
