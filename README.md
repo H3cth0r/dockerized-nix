@@ -1,7 +1,22 @@
-# Manual compose steps
-
+## Easy setup
 ```
+docker compose up -d
+```
+
+## Start over
+```
+docker compose down
+docker rmi ubuntu:latest
+
+rm -rf shared data config home
+mkdir shared data config home
+
 mkdir shared data config
+```
+
+## Procedure to replicate manually
+```
+mkdir shared data config home
 ```
 Setup docker container
 ```
@@ -26,7 +41,6 @@ Restart to complete installation
 docker compose restart ubuntu
 ```
 
-
 Install home manager
 ```
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
@@ -35,7 +49,7 @@ nix-channel --update
 nix-shell '<home-manager>' -A install
 ```
 
-## Life conf logs
+## Live conf logs
 ```
 docker compose logs -f ubuntu
 ```
@@ -43,10 +57,3 @@ docker compose logs -f ubuntu
 ```
 docker compose logs ubuntu
 ```
-
-## Start over
-docker compose down
-docker rmi ubuntu:latest
-
-rm -rf shared data config
-mkdir shared data config
