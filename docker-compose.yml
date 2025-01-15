@@ -8,11 +8,6 @@ services:
       - USER=root
     tty: true
     stdin_open: true
-    volumes:
-      - ./shared:/shared
-      - ./data:/data
-      - ./config:/etc/myapp
-    working_dir: /shared
     command: >
       bash -c '
         # Update and install required packages

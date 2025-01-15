@@ -57,3 +57,16 @@ docker compose logs -f ubuntu
 ```
 docker compose logs ubuntu
 ```
+
+```
+home-manager location
+/root/.config/home-manager/home.nix
+```
+
+Create and public image
+```
+docker commit my-ubuntu ubuntu-nix
+# Create read and delete packages token
+docker login --username <github username> --password <github_token> ghcr.io
+docker push ghcr.io/h3cth0r/ubuntu-nix:latest
+```
