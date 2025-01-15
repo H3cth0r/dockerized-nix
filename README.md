@@ -3,6 +3,12 @@
 docker compose up -d
 ```
 
+## Clone Registry
+You can pull container from here:
+```
+docker pull ghcr.io/h3cth0r/ubuntu-nix:latest
+```
+
 ## Start over
 ```
 docker compose down
